@@ -206,10 +206,9 @@
 	 
  </ul>
         
-
 		
 		
-			<div class="theme-annie-comment-button-container">
+		<div class="theme-annie-comment-button-container">
 	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
 		加载评论
 		<!--加载评论-->
@@ -220,75 +219,35 @@
 
 	
 		
-			<!-- comment gitalk -->
-			<!-- show gitalk comment -->
+			<!-- comment valine -->
+			<!-- show valine comment -->
+<div id="valineComment" class="comment"></div>
 
-  <div id="gitalk-container"></div>
+<!-- valine`s js & css -->
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/js/valine.min.js"></script>
+<link rel="stylesheet" href="/css/comment.css">
 
-
-<!-- gitalk`s css & js -->
-
-	<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-	<link rel="stylesheet" href="/css/comment.css">
-	<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
-	<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-  
-
-
-<script type="text/javascript">
-	//thanks O-R
-	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
-	//去除尾部匹配正则数组的字符串  
-	//remove redundant characters
-	String.prototype.trimEnd = function(regStr) {
-		var result = this;
-		if(regStr == undefined || regStr == null || regStr == "") {
-			return result;
+<script>
+	var checkExistComment = setInterval(function() {
+		if( $('#valineComment').length ) {
+			new Valine({
+				// AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+				av: AV,
+				//使用id寻找div元素（使用class可能找不到）
+				el: '#valineComment',
+				emoticon_url: 'https://cloud.panjunwen.com/alu',
+				emoticon_list: ["吐.png", "期待.png", "高兴.png", "吐血倒地.png", "哭泣.png", "欢呼.png"],
+				app_id: "bIMpeESObz0rcyxzPIrqWgCo-gzGzoHsz", //获取APP ID
+				app_key: "t09Ie46Yuv0CA79slBU5hOQe", //获取APP KEY
+				placeholder: "no any!", //评论框占位提示文字        			
+			});
+			clearInterval(checkExistComment);
 		}
-		var array = regStr.split(',');
-
-		if(array.length > 0) {
-
-			var c = array.shift();
-			var str = this;
-			var i = str.length;
-			var rg = new RegExp(c);
-			var matchArr = str.match(rg);
-
-			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
-				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
-					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
-					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
-					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
-					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
-					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
-					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
-					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
-				matchStr = matchStr + '$';
-				result = str.replace(new RegExp(matchStr), "");
-			}
-
-			if(array.length > 0) {
-				return result.trimEnd(array.join())
-			} else {
-				return result;
-			}
-		}
-	};
-
-	//create gitalk
-	var gitalk = new Gitalk({
-		clientID: '8eb259c9991bc06f36f2',
-		clientSecret: 'ce5b3670396c2e245b9c57928f3b2284bceb45c4',
-		//id: window.location.pathname,
-		// id: (window.location.pathname).split("/").pop().substring(0, 49),
-		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
-		repo: 'blog-Comment-Repo',
-		owner: 'LQ15388104460',
-		admin: '漂亮得皮皮',
-		distractionFreeMode: 'true',
-	})
-	gitalk.render('gitalk-container');
+	}, 100);
 </script>
 		
 	
@@ -339,16 +298,16 @@
 		<div class="theme-annie-social">
 				
 				
-					<a href="https://github.com/LQ15388104460" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					<a href="https://github.com/" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
 					
 				
-					<a href="http://github.com/" title="Weibo" target="_blank"><i class="fa fa-weibo"></i>&nbsp;</a>
+					<a href="https://weibo.com/" title="Weibo" target="_blank"><i class="fa fa-weibo"></i>&nbsp;</a>
 				
 				
-					<a href="http://github.com/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					<a href="https://mail.qq.com/" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
 					
 				
-					<a href="http://github.com/" title="QQ" target="_blank"><i class="fa fa-qq"></i>&nbsp;</a>
+					<a href="https://graph.qq.com/oauth2.0/show?which=Login&display=pc&response_type=code&client_id=101285759&redirect_uri=http%3A%2F%2Fwww.daiyoubang.com%2Faction%2Flogin%2Fqq%3F&state=ABC4321876590&scope=get_user_info&version=%3Fversion%3D20170607&isSpider=false" title="QQ" target="_blank"><i class="fa fa-qq"></i>&nbsp;</a>
 					
 						
 				
@@ -358,7 +317,7 @@
 	<div class="blog-text-center">
 		<div class="theme-annie-copyright">
 			
-				&copy; 2017 - 2018, content by John Doe. All Rights Reserved.			       	
+				&copy; 2018, content by John Doe. All Rights Reserved. 			   
 			
 		</div>
 	</div>
