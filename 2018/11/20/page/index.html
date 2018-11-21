@@ -208,7 +208,7 @@
         
 
 		
-		{% elseif theme.gitalk.enable %}
+		{% if (theme.gitalk.enable){ %}
 			<div class="theme-annie-comment-button-container">
 	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
 		加载评论
@@ -319,7 +319,7 @@
 		Annie_Comment();
 	})();
 </script>
-		{% endif %}
+		{% } %}
 		
 		<!--
 	时间：2018-09-24
